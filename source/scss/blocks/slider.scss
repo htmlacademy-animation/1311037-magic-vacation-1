@@ -73,7 +73,15 @@
   font-size: 4.8rem;
   line-height: 0.906;
   letter-spacing: -0.04em;
-
+  opacity: 0;
+  transform: rotate(5deg) translate(-30px, -10px);
+  transition-delay: .2s;
+  transition-duration: .5s;
+  .swiper-slide-active &,
+  .swiper-slide-next &{
+    opacity: 1;
+    transform: none;
+  }
   @media (min-width: $stop-scaling) {
     margin-left: -55px;
     font-size: 48px;
@@ -96,6 +104,16 @@
   max-width: 34rem;
   font-size: 1.8rem;
   line-height: 2rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition-delay: .4s;
+  transition-duration: .5s;
+  .swiper-slide-active &,
+  .swiper-slide-next &{
+    opacity: 1;
+    transform: none;
+  }
+
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
