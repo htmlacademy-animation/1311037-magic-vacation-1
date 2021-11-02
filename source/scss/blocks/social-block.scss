@@ -17,6 +17,7 @@
   height: 4rem;
   color: $c-dark;
   border-radius: 50%;
+  transition-duration: $transition-speed;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
@@ -35,6 +36,7 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
+    transition-duration: $transition-speed;
   }
 
   svg {
@@ -86,12 +88,11 @@
   position: absolute;
   top: 100%;
   right: 0;
-  margin-top: 1.5rem;
-  opacity: 0;
+  margin-top: $social-gap * 3;
   pointer-events: none;
 
   @media (min-width: $stop-scaling) {
-    margin-top: 15px;
+    margin-top: $social-gap-fixed * 3;
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
@@ -120,10 +121,10 @@
     bottom: 100%;
     left: 0;
     right: 0;
-    height: 1.5rem;
+    height: $social-gap * 3;
 
     @media (min-width: $stop-scaling) {
-      height: 15px;
+      height: $social-gap-fixed * 3;
     }
   }
 
@@ -138,16 +139,30 @@
   }
 
   .social-block--active & {
-    opacity: 1;
     pointer-events: auto;
   }
 
   li {
     flex: none;
-    margin-bottom: 0.5rem;
-
+    margin-bottom: $social-gap;
+    pointer-events: none;
+    opacity: 0;
+    transition-duration: $transition-speed;
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        transform: translateY(-1 * ($i * ($social-size + $social-gap) + $social-gap * 2));
+      }
+      .social-block--active &:nth-child(#{$i}){
+        transition-delay: #{($i - 1) * 0.2}s;
+      }
+    }
+    .social-block--active & {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
     @media (min-width: $stop-scaling) {
-      margin-bottom: 5px;
+      margin-bottom: $social-gap-fixed;
     }
 
     @media (max-width: $tablet) and (orientation: portrait) {
@@ -163,15 +178,16 @@
 .social-block__link {
   position: relative;
   display: block;
-  width: 4rem;
-  height: 4rem;
+  width: $social-size;
+  height: $social-size;
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
+  transition-duration: $transition-speed;
 
   @media (min-width: $stop-scaling) {
-    width: 40px;
-    height: 40px;
+    width: $social-size-fixed;
+    height: $social-size-fixed;
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
