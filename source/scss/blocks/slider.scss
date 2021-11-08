@@ -108,12 +108,16 @@
   transform: translateY(-10px);
   transition-delay: .4s;
   transition-duration: .5s;
-  .swiper-slide-active &,
-  .swiper-slide-next &{
+  .swiper-slide-active &{
     opacity: 1;
     transform: none;
   }
-
+  @media (orientation: landscape) {
+    .swiper-slide-next &{
+      opacity: 1;
+      transform: none;
+    }
+  }
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
