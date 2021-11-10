@@ -2,6 +2,16 @@
   position: relative;
   display: flex;
   align-items: center;
+  gap: 3rem;
+  @media (min-width: $stop-scaling){
+    gap: 30px;
+  }
+  @media (orientation: portrait){
+    gap: 1rem;
+  }
+  @media (max-width: $mobile) and (orientation: landscape){
+    gap: 1rem;
+  }
 }
 
 .form__label {
@@ -28,13 +38,14 @@
     pointer-events: auto;
   }
 }
-
+.form__field-wprapper{
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+}
 .form__field {
   flex: none;
-  margin-right: 3rem;
-  padding: 0 5.6rem;
   height: 6rem;
-  width: calc(100% - 21rem);
   text-transform: uppercase;
   font: inherit;
   font-size: 2.4rem;
@@ -43,44 +54,55 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
-
+  width: 6rem;
+  box-sizing: border-box;
+  padding: 0;
+  transition: transform $transition-speed ease-in,
+    width $transition-speed $transition-speed ease-in,
+    padding 0s $transition-speed * 2 linear;
+  transform: scale(0);
+  .screen.active & {
+    width: 100%;
+    transform: none;
+    padding: 0 5.6rem;
+    @media (min-width: $stop-scaling){
+      padding: 0 56px;
+    }
+    @media (orientation: portrait){
+      padding: 0 2.5rem;
+    }
+    @media (max-width: $mobile) and (orientation: landscape){
+      padding: 0 2.5rem;
+    }
+  }
   &:focus {
     border: 1px solid $c-purple;
   }
 
   @media (min-width: $stop-scaling) {
-    margin-right: 30px;
-    padding: 0 56px;
     height: 60px;
-    width: calc(100% - 210px);
+    width: 60px;
     font-size: 24px;
     border-radius: 30px;
   }
-
   @media (orientation: portrait) {
-    margin-right: 1rem;
-    padding: 0 2.5rem;
-    width: calc(100% - 5rem);
     height: 4rem;
+    width: 4rem;
     font-size: 1.6rem;
   }
-
-  @media (max-width: $tablet) and (orientation: landscape) {
-    width: calc(100% - 9rem);
-  }
-
   @media (max-width: $mobile) and (orientation: landscape) {
-    margin-right: 1rem;
-    padding: 0 2.5rem;
-    width: calc(100% - 5rem);
     height: 4rem;
+    width: 4rem;
     font-size: 1.6rem;
   }
 }
 
 .form__button {
-  flex-grow: 1;
-
+  flex-grow: 0;
+  width: 21rem;
+  @media (min-width: $stop-scaling){
+    width: 210px;
+  }
   @media (orientation: portrait) {
     position: relative;
     flex: none;
