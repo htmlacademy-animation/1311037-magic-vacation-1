@@ -7,7 +7,7 @@ export default class FullPageScroll {
     this.timeout = null;
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
-    this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
+    this.menuElements = Array.from(document.querySelectorAll(`.page-header__menu .js-menu-link`));
 
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
@@ -52,20 +52,33 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
-    this.screenElements.forEach((screen) => {
-      screen.classList.add(`screen--hidden`);
-      screen.classList.remove(`active`);
-    });
-    this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
-    setTimeout(() => {
-      this.screenElements[this.activeScreen].classList.add(`active`);
-    }, 100);
+    const currentActiveScreen = Array.from(this.screenElements).find((screen) => screen.classList.contains(`active`));
+    const toggleScreen = () => {
+      this.screenElements.forEach((screen) => {
+        screen.classList.add(`screen--hidden`);
+        screen.classList.remove(`active`);
+      });
+      this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+      setTimeout(() => {
+        this.screenElements[this.activeScreen].classList.add(`active`);
+      }, 100);
+    };
+    if (Array.from(this.screenElements).indexOf(currentActiveScreen) === 1) {
+      currentActiveScreen.classList.add(`screen_unloaded`);
+      setTimeout(() => {
+        currentActiveScreen.classList.remove(`screen_unloaded`);
+        toggleScreen();
+      }, 250);
+    } else {
+      toggleScreen();
+    }
   }
 
   changeActiveMenuItem() {
-    const activeItem = Array.from(this.menuElements).find((item) => item.dataset.href === this.screenElements[this.activeScreen].id);
+    const activeItem = this.menuElements.find((item) => item.dataset.href === this.screenElements[this.activeScreen].id);
+    const oldActiveItem = this.menuElements.find((element) => element.classList.contains(`active`));
     if (activeItem) {
-      this.menuElements.forEach((item) => item.classList.remove(`active`));
+      oldActiveItem.classList.remove(`active`);
       activeItem.classList.add(`active`);
     }
   }
