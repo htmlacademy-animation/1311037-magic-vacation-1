@@ -35,7 +35,11 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
-
+  transform: translateX(calc(-1 * (100% + #{$container-padding})));
+  transition: $header-transition;
+  .body_loaded & {
+    transform: none;
+  }
   @media (min-width: $stop-scaling) {
     top: -5px;
     padding: 10px 0;
@@ -131,6 +135,13 @@
   display: flex;
   align-items: center;
 
+  transform: translateX(calc(100% + #{$container-padding}));
+  transition: $header-transition;
+  @media (min-width: $tablet) {
+    .body_loaded & {
+      transform: none;
+    }
+  }
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
     top: 0;
