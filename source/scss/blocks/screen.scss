@@ -5,7 +5,21 @@
   min-height: 100vh;
   z-index: 1;
   overflow: hidden;
-
+  &:after{
+    width: 100%;
+    z-index: 1;
+    background-color: $c-dark;
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0;
+    transition: height 250ms ease-in;
+  }
+  &_unloaded:after{
+    height: 100%;
+  }
   &--hidden {
     display: none;
   }
