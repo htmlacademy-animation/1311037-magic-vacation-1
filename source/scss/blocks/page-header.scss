@@ -137,7 +137,12 @@
 
   transform: translateX(calc(100% + #{$container-padding}));
   transition: $header-transition;
-  @media (min-width: $tablet) {
+  @media (min-width: $tablet){
+    .body_loaded & {
+      transform: none;
+    }
+  }
+  @media (max-width: $tablet) and (orientation: landscape) {
     .body_loaded & {
       transform: none;
     }
