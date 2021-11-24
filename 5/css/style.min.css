@@ -3230,12 +3230,13 @@ img {
   transform-origin: center;
   transform: scale(0);
   color: transparent;
-  animation-name: linknAnimation, linknAnimationWidthFixed;
+  animation-name: linknAnimation;
   animation-timing-function: cubic-bezier(0.64, 0.25, 0.33, 1.52);
   animation-fill-mode: forwards;
   animation-duration: 1s;
   animation-delay: 1.8s;
   animation-play-state: paused;
+  --btn-width: 178px;
 }
 .screen.active .rules__link {
   animation-play-state: running;
@@ -3246,27 +3247,13 @@ img {
   }
   80% {
     transform: none;
+    width: var(--btn-width);
     color: transparent;
   }
   to {
     transform: none;
+    width: var(--btn-width);
     color: #5f458c;
-  }
-}
-@keyframes linknAnimationWidthFull {
-  80% {
-    width: 100%;
-  }
-  to {
-    width: 100%;
-  }
-}
-@keyframes linknAnimationWidthFixed {
-  80% {
-    width: 150px;
-  }
-  to {
-    width: 150px;
   }
 }
 @media (min-width: 2000px) {
@@ -3279,13 +3266,14 @@ img {
   .rules__link {
     right: 0;
     bottom: 4rem;
-    animation-name: linknAnimation, linknAnimationWidthFull;
     animation-timing-function: ease-in;
+    --btn-width: 100%;
   }
 }
 @media (max-width: 1024px) and (orientation: landscape) {
   .rules__link {
     bottom: 5rem;
+    --btn-width: 150px;
   }
 }
 @media (max-width: 768px) and (orientation: landscape) {
