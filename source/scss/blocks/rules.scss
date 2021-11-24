@@ -159,6 +159,22 @@
     border-radius: 50%;
     line-height: 5rem;
     text-align: center;
+    transform: scale(0);
+    transform-origin: center;
+    animation-duration: 2 * $bullet-animation-speed;
+    animation-name: bullet;
+    animation-timing-function: cubic-bezier(.64,.25,.33,1.52);
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    .screen.active & {
+      animation-play-state: running;
+    }
+
+    @keyframes bullet {
+      to {
+        transform: none;
+      }
+    }
 
     @media (max-width: $tablet) and (orientation: portrait) {
       top: 1rem;
@@ -179,9 +195,36 @@
 
   p {
     margin: 0;
+    opacity: 0;
+    transform: translateX(10px);
+    animation-duration: $bullet-animation-speed;
+    animation-delay: 2 * $bullet-animation-speed;
+    animation-name: textBullet;
+    animation-timing-function: cubic-bezier(.64,.25,.33,1.52);
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
 
+    .screen.active & {
+      animation-play-state: running;
+    }
+    @keyframes textBullet {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(1.4rem * 2.2);
+    }
+  }
+  @for $i from 1 through 4 {
+    &:nth-child(n + #{$i}) {
+      &::before {
+        animation-delay: ($i - 1) * 3 * $bullet-animation-speed;
+      }
+      p {
+        animation-delay: $i * 3 * $bullet-animation-speed - $bullet-animation-speed;
+      }
     }
   }
 }
@@ -190,6 +233,28 @@
   position: absolute;
   bottom: 6rem;
   right: 5.6rem;
+  transform: scaleX(0);
+  color: transparent;
+  transform-origin: right center;
+  animation-name: linknAnimation;
+  animation-timing-function: cubic-bezier(.64,.25,.33,1.52);
+  animation-fill-mode: forwards;
+  animation-duration: 3 * $bullet-animation-speed;
+  animation-delay: 4 * 3 * $bullet-animation-speed;
+  animation-play-state: paused;
+  .screen.active & {
+    animation-play-state: running;
+  }
+  @keyframes linknAnimation {
+    80% {
+      transform: none;
+      color: transparent;
+    }
+    to {
+      transform: none;
+      color: $c-dark;
+    }
+  }
 
   @media (min-width: $stop-scaling) {
     bottom: 60px;
