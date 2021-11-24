@@ -237,12 +237,13 @@
   transform-origin: center;
   transform: scale(0);
   color: transparent;
-  animation-name: linknAnimation,  linknAnimationWidthFixed;
+  animation-name: linknAnimation;
   animation-timing-function: cubic-bezier(.64,.25,.33,1.52);
   animation-fill-mode: forwards;
   animation-duration: 1s;
   animation-delay: 4 * 3 * $bullet-animation-speed;
   animation-play-state: paused;
+  --btn-width: 178px;
   .screen.active & {
     animation-play-state: running;
   }
@@ -252,27 +253,13 @@
     }
     80% {
       transform: none;
+      width: var(--btn-width);
       color: transparent;
     }
     to {
       transform: none;
+      width: var(--btn-width);
       color: $c-dark;
-    }
-  }
-  @keyframes linknAnimationWidthFull {
-    80% {
-      width: 100%;
-    }
-    to {
-      width: 100%;
-    }
-  }
-  @keyframes linknAnimationWidthFixed {
-    80% {
-      width: 150px;
-    }
-    to {
-      width: 150px;
     }
   }
 
@@ -285,12 +272,13 @@
   @media (max-width: $tablet) and (orientation: portrait) {
     right: 0;
     bottom: 4rem;
-    animation-name: linknAnimation,  linknAnimationWidthFull;
     animation-timing-function: ease-in;
+    --btn-width: 100%;
   }
 
   @media (max-width: $tablet) and (orientation: landscape) {
     bottom: 5rem;
+    --btn-width: 150px;
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
