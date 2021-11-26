@@ -163,15 +163,20 @@
     transform-origin: center;
     animation-duration: 2 * $bullet-animation-speed;
     animation-name: bullet;
-    animation-timing-function: cubic-bezier(.64,.25,.33,1.52);
+    animation-timing-function: cubic-bezier(.31,.16,.24,1.32);
     animation-fill-mode: forwards;
     animation-play-state: paused;
+    color: transparent;
     .screen.active & {
       animation-play-state: running;
     }
 
     @keyframes bullet {
+      80% {
+        color: transparent;
+      }
       to {
+        color: inherit;
         transform: none;
       }
     }
@@ -200,7 +205,7 @@
     animation-duration: $bullet-animation-speed;
     animation-delay: 2 * $bullet-animation-speed;
     animation-name: textBullet;
-    animation-timing-function: cubic-bezier(.64,.25,.33,1.52);
+    animation-timing-function: ease-in;
     animation-fill-mode: forwards;
     animation-play-state: paused;
 
@@ -238,7 +243,7 @@
   transform: scale(0);
   color: transparent;
   animation-name: linknAnimation;
-  animation-timing-function: cubic-bezier(.64,.25,.33,1.52);
+  animation-timing-function: ease-in;
   animation-fill-mode: forwards;
   animation-duration: 1s;
   animation-delay: 4 * 3 * $bullet-animation-speed;
@@ -272,13 +277,12 @@
   @media (max-width: $tablet) and (orientation: portrait) {
     right: 0;
     bottom: 4rem;
-    animation-timing-function: ease-in;
     --btn-width: 100%;
   }
 
-  @media (max-width: $tablet) and (orientation: landscape) {
+  @media (max-width: $mobile) and (orientation: landscape) {
     bottom: 5rem;
-    --btn-width: 150px;
+    --btn-width: 160px;
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
