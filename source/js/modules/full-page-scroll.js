@@ -16,7 +16,7 @@ export default class FullPageScroll {
     this.animationNodes = [
       `.intro__title, .intro__label, .intro__date`,
       `.slider__item-title`,
-      `.prizes__title,  .prizes__desc b`,
+      `.prizes__title,`,
       `.rules__title`,
       `.game__title`
     ];
