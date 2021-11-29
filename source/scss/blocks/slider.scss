@@ -177,7 +177,28 @@
   width: 4rem;
   height: 4rem;
   color: $c-dark;
-
+  transform-origin: center;
+  opacity: 0;
+  animation-name: paginationBtnAnimation;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-play-state: paused;
+  .screen.active & {
+    animation-play-state: running;
+  }
+  &--prev{
+    transform: translateX(-157%) rotate(-180deg);
+  }
+  &--next{
+    transform: translateX(157%) rotate(180deg);
+  }
+  @keyframes paginationBtnAnimation {
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
   @media (min-width: $stop-scaling) {
     width: 40px;
     height: 40px;
@@ -255,6 +276,21 @@
   font-weight: 400;
   font-size: 2.4rem;
   line-height: 4rem;
+  opacity: 0;
+  animation-name: paginationAnimation;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-duration: 500ms;
+  animation-play-state: paused;
+  .screen.active & {
+    animation-play-state: running;
+  }
+
+  @keyframes paginationAnimation {
+    to {
+      opacity: 1;
+    }
+  }
 
   @media (min-width: $stop-scaling) {
     bottom: 28px;
