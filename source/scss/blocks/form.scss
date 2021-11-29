@@ -50,7 +50,6 @@
   font: inherit;
   font-size: 2.4rem;
   line-height: 1.2;
-  color: $c-dark;
   border: 0;
   border-radius: 3rem;
   outline: none;
@@ -60,8 +59,15 @@
   transition: transform $transition-speed ease-in,
     width $transition-speed $transition-speed ease-in,
     padding 0s $transition-speed * 2 linear;
+  &::placeholder {
+    opacity: 0;
+    transition: opacity $transition-speed $transition-speed * 2 linear;
+  }
   transform: scale(0);
   .screen.active & {
+    &::placeholder {
+      opacity: 1;
+    }
     width: 100%;
     transform: none;
     padding: 0 5.6rem;
@@ -148,9 +154,18 @@
 }
 
 .form--result {
-  .form__field {
+  .form__button{
+    color: transparent;
+    transition: color 250ms 1.75s linear, transform 250ms 1.5s linear;
+    transform: scale(0);
+    transform-origin: center;
+    .screen.active & {
+      transform: none;
+      color: $c-dark;
+    }
+  }
+  .form__field-wprapper {
     width: calc(100% - 31rem);
-
     @media (min-width: $stop-scaling) {
       width: calc(100% - 310px);
     }
@@ -165,6 +180,12 @@
 
     @media (max-width: $mobile) and (orientation: landscape) {
       width: calc(100% - 5rem);
+    }
+  }
+  .form__field{
+    transition-delay: 1.5s, calc(1.5s +  #{$transition-speed}), calc(1.5s +  #{$transition-speed * 2});
+    &::placeholder {
+      transition-delay: calc(1.5s +  #{$transition-speed * 2});
     }
   }
 }
