@@ -282,18 +282,34 @@
     animation-fill-mode: forwards;
     animation-play-state: paused;
     animation-name: leafAnimation;
-    animation-duration: 1.5s;
-    animation-delay: 0.5s;
+    animation-duration: 1489ms;
+    animation-delay: 1065ms;
+
   }
   @keyframes leafAnimation {
     40% {
-      transform: rotate(5deg);
+      transform: rotate(30deg);
     }
     60% {
-      transform: rotate(-3deg);
+      transform: rotate(-10deg);
     }
     80% {
-      transform: rotate(3deg);
+      transform: rotate(5deg);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes leafLeftAnimation {
+    40% {
+      transform: rotate(-14deg);
+    }
+    60% {
+      transform: rotate(10deg);
+    }
+    80% {
+      transform: rotate(-5deg);
     }
     to {
       opacity: 1;
@@ -319,6 +335,7 @@
     opacity: 0;
     transform-origin: right center;
     transform: rotate(25deg);
+    animation-name: leafLeftAnimation;
     .screen.active & {
       animation-play-state: running;
     }
@@ -371,9 +388,9 @@
     top: 2.2%;
     opacity: 0;
     transform: translate(0%, 52%) scale(0);
-    animation-timing-function: cubic-bezier(.89,.23,.32,1.33);
+    animation-timing-function: cubic-bezier(.68,.57,.61,1.54);
     animation-name: suitcaseAnimation;
-    animation-duration: 1s;
+    animation-duration: 1378ms;
     animation-delay: unset;
     .screen.active & {
       animation-play-state: running;
