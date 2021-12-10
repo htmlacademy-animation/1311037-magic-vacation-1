@@ -1,0 +1,37 @@
+.animated-text {
+  opacity: 0;
+  span {
+    margin: 0 !important;
+  }
+  span span{
+    display: initial !important;
+  }
+  &__line{
+    overflow: hidden;
+  }
+  &_init{
+    opacity: 1;
+  }
+  &__char{
+    transform: translateY(102%);
+    transform-origin: bottom center;
+    animation-name: charAnimation;
+    animation-play-state: paused;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+    @keyframes charAnimation {
+      to {
+        transform: none;
+      }
+
+    }
+    .screen.active &{
+      animation-play-state: running;
+    }
+  }
+
+  &__line {
+    display: inline-flex !important;
+    flex-wrap: nowrap;
+  }
+}

@@ -8,7 +8,7 @@ import result from './modules/result.js';
 import form from './modules/form.js';
 import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
-import common from "./modules/common";
+import common from "./modules/body.js";
 // init modules
 common();
 mobileHeight();

@@ -268,3 +268,127 @@
     }
   }
 }
+.result-image{
+  position: absolute;
+  width: 70vw;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-top: 35%;
+  .result__image &__part{
+    position: absolute;
+    height: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    animation-name: leafAnimation;
+    animation-duration: 1489ms;
+    animation-delay: 1065ms;
+    .screen.active &, .screen.screen--show & {
+      animation-play-state: running;
+    }
+
+  }
+  @keyframes leafAnimation {
+    40% {
+      transform: rotate(30deg);
+    }
+    60% {
+      transform: rotate(-10deg);
+    }
+    80% {
+      transform: rotate(5deg);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes leafLeftAnimation {
+    40% {
+      transform: rotate(-14deg);
+    }
+    60% {
+      transform: rotate(10deg);
+    }
+    80% {
+      transform: rotate(-5deg);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .result__image &__leaf-blue-1{
+    width: 39.5%;
+    top: 2.5%;
+    left: 49.9%;
+    opacity: 0;
+    transform: rotate(-5deg);
+    transform-origin: left center;
+
+
+  }
+  .result__image &__leaf-blue-2{
+    width: 39.4%;
+    top: 31.4%;
+    left: 1.2%;
+    opacity: 0;
+    transform-origin: right center;
+    transform: rotate(25deg);
+    animation-name: leafLeftAnimation;
+
+  }
+  .result__image &__leaf-green{
+    width: 47.1%;
+    left: 45.1%;
+    top: 40.4%;
+    opacity: 0;
+    transform-origin: left center;
+    transform: rotate(-35deg);
+  }
+  .result__image &__flamingo{
+    width: 37%;
+    top: 25%;
+    left: 16%;
+    opacity: 0;
+    transform: rotate(-15deg) translate(0%, 60%);
+    animation-timing-function: linear;
+    animation-name: flamingoAnimation, flamingoShownAnimation;
+    animation-duration: 1s, 2s;
+    animation-delay: 0s, 1s;
+    animation-iteration-count: 1, infinite;
+    animation-direction: normal, alternate;
+
+    @keyframes flamingoAnimation {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    @keyframes flamingoShownAnimation{
+      to {
+        transform: rotate(3deg) translate(0%, -5%);
+      }
+
+    }
+  }
+  .result__image &__suitcase{
+    width: 48.8%;
+    left: 20.8%;
+    top: 2.2%;
+    opacity: 0;
+    transform: translate(0%, 52%) scale(0);
+    animation-timing-function: cubic-bezier(.68,.57,.61,1.54);
+    animation-name: suitcaseAnimation;
+    animation-duration: 1378ms;
+    animation-delay: unset;
+    @keyframes suitcaseAnimation {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+
+}

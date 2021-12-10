@@ -1,4 +1,5 @@
 import throttle from 'lodash/throttle';
+import TextAnimation from "./common/text-animation";
 
 export default class FullPageScroll {
   constructor() {
@@ -6,18 +7,29 @@ export default class FullPageScroll {
     this.scrollFlag = true;
     this.timeout = null;
 
-    this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
+    this.screenElements = document.querySelectorAll(`.screen`);
     this.menuElements = Array.from(document.querySelectorAll(`.page-header__menu .js-menu-link`));
-
+    this.textAnimation = new TextAnimation(150);
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
+    this.animationNodes = [
+      `.intro__title, .intro__label, .intro__date`,
+      `.slider__item-title`,
+      `.prizes__title`,
+      `.rules__title`,
+      `.game__title`
+    ];
   }
 
   init() {
     document.addEventListener(`wheel`, throttle(this.onScrollHandler, this.THROTTLE_TIMEOUT, {trailing: true}));
     window.addEventListener(`popstate`, this.onUrlHashChengedHandler);
-
+    this.screenElements.forEach((screen, idx) => {
+      screen.querySelectorAll(this.animationNodes[idx]).forEach((node) => {
+        this.textAnimation.init(node);
+      });
+    });
     this.onUrlHashChanged();
   }
 
@@ -53,14 +65,19 @@ export default class FullPageScroll {
 
   changeVisibilityDisplay() {
     const currentActiveScreen = Array.from(this.screenElements).find((screen) => screen.classList.contains(`active`));
+
     const toggleScreen = () => {
       this.screenElements.forEach((screen) => {
         screen.classList.add(`screen--hidden`);
         screen.classList.remove(`active`);
       });
-      this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+      const activeScreenNode = this.screenElements[this.activeScreen];
+      activeScreenNode.classList.remove(`screen--hidden`);
       setTimeout(() => {
-        this.screenElements[this.activeScreen].classList.add(`active`);
+        activeScreenNode.classList.add(`active`);
+        activeScreenNode.querySelectorAll(this.animationNodes[this.activeScreen]).forEach((node, idx) => {
+          this.textAnimation.splitByChar(node, 300 * idx);
+        });
       }, 100);
     };
     if (Array.from(this.screenElements).indexOf(currentActiveScreen) === 1) {
