@@ -6,11 +6,14 @@
   span span{
     display: initial !important;
   }
+  &__line{
+    overflow: hidden;
+  }
   &_init{
     opacity: 1;
   }
   &__char{
-    transform: rotate3d(1,0,0,90deg);
+    transform: translateY(102%);
     transform-origin: bottom center;
     animation-name: charAnimation;
     animation-play-state: paused;
