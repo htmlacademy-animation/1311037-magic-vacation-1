@@ -284,6 +284,9 @@
     animation-name: leafAnimation;
     animation-duration: 1489ms;
     animation-delay: 1065ms;
+    .screen.active &, .screen.screen--show & {
+      animation-play-state: running;
+    }
 
   }
   @keyframes leafAnimation {
@@ -323,9 +326,7 @@
     opacity: 0;
     transform: rotate(-5deg);
     transform-origin: left center;
-    .screen.active & {
-      animation-play-state: running;
-    }
+
 
   }
   .result__image &__leaf-blue-2{
@@ -336,9 +337,6 @@
     transform-origin: right center;
     transform: rotate(25deg);
     animation-name: leafLeftAnimation;
-    .screen.active & {
-      animation-play-state: running;
-    }
 
   }
   .result__image &__leaf-green{
@@ -348,11 +346,6 @@
     opacity: 0;
     transform-origin: left center;
     transform: rotate(-35deg);
-
-    .screen.active & {
-      animation-play-state: running;
-    }
-
   }
   .result__image &__flamingo{
     width: 37%;
@@ -366,9 +359,7 @@
     animation-delay: 0s, 1s;
     animation-iteration-count: 1, infinite;
     animation-direction: normal, alternate;
-    .screen.active & {
-      animation-play-state: running;
-    }
+
     @keyframes flamingoAnimation {
       to {
         opacity: 1;
@@ -392,9 +383,6 @@
     animation-name: suitcaseAnimation;
     animation-duration: 1378ms;
     animation-delay: unset;
-    .screen.active & {
-      animation-play-state: running;
-    }
     @keyframes suitcaseAnimation {
       to {
         opacity: 1;
