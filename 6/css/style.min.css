@@ -1039,11 +1039,14 @@ img {
 .animated-text span span {
   display: initial !important;
 }
+.animated-text__line {
+  overflow: hidden;
+}
 .animated-text_init {
   opacity: 1;
 }
 .animated-text__char {
-  transform: rotate3d(1, 0, 0, 90deg);
+  transform: translateY(102%);
   transform-origin: bottom center;
   animation-name: charAnimation;
   animation-play-state: paused;
@@ -1517,31 +1520,45 @@ img {
   padding: 0;
   transition: transform 0.25s ease-in, width 0.25s 0.25s ease-in, padding 0s 0.5s linear;
   transform: scale(0);
+  animation-fill-mode: forwards;
+  animation-name: fieldWidthAnimation;
+  animation-play-state: paused;
+  animation-delay: 0.25s;
+  animation-duration: 2.5s;
+}
+@keyframes fieldWidthAnimation {
+  50% {
+    transform: none;
+    width: 6rem;
+  }
+  100% {
+    width: 100%;
+    transform: none;
+    padding: 0 5.6rem;
+  }
 }
 .form__field::placeholder {
   opacity: 0;
   transition: opacity 0.25s 0.5s linear;
 }
-.screen.active .form__field {
-  width: 100%;
-  transform: none;
-  padding: 0 5.6rem;
+.screen.active .form__field, .screen.screen--show .form__field {
+  animation-play-state: running;
 }
-.screen.active .form__field::placeholder {
+.screen.active .form__field::placeholder, .screen.screen--show .form__field::placeholder {
   opacity: 1;
 }
 @media (min-width: 2000px) {
-  .screen.active .form__field {
+  .screen.active .form__field, .screen.screen--show .form__field {
     padding: 0 56px;
   }
 }
 @media (orientation: portrait) {
-  .screen.active .form__field {
+  .screen.active .form__field, .screen.screen--show .form__field {
     padding: 0 2.5rem;
   }
 }
 @media (max-width: 768px) and (orientation: landscape) {
-  .screen.active .form__field {
+  .screen.active .form__field, .screen.screen--show .form__field {
     padding: 0 2.5rem;
   }
 }
@@ -1634,13 +1651,26 @@ img {
 
 .form--result .form__button {
   color: transparent;
-  transition: color 250ms 1.75s linear, transform 250ms 1.5s linear;
   transform: scale(0);
   transform-origin: center;
+  animation-name: buttonAnimation;
+  animation-duration: 250ms;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
 }
-.screen.active .form--result .form__button {
-  transform: none;
-  color: #5f458c;
+.screen.active .form--result .form__button, .screen.screen--show .form--result .form__button {
+  animation-play-state: running;
+}
+@keyframes buttonAnimation {
+  85% {
+    color: transparent;
+    transform: none;
+  }
+  100% {
+    transform: none;
+    color: #5f458c;
+  }
 }
 .form--result .form__field-wprapper {
   width: calc(100% - 31rem);
@@ -1666,10 +1696,10 @@ img {
   }
 }
 .form--result .form__field {
-  transition-delay: 1.5s, calc(1.5s + 0.25s), calc(1.5s + 0.5s);
+  animation-delay: 1.5s;
 }
 .form--result .form__field::placeholder {
-  transition-delay: calc(1.5s + 0.5s);
+  animation-delay: calc(1.5s + 0.5s);
 }
 
 .game {
@@ -1803,7 +1833,6 @@ img {
   left: 0;
   z-index: 100;
   opacity: 0.5;
-  display: none;
 }
 
 .game__button {
@@ -3035,18 +3064,36 @@ img {
   animation-fill-mode: forwards;
   animation-play-state: paused;
   animation-name: leafAnimation;
-  animation-duration: 1.5s;
-  animation-delay: 0.5s;
+  animation-duration: 1489ms;
+  animation-delay: 1065ms;
+}
+.screen.active .result__image .result-image__part, .screen.screen--show .result__image .result-image__part {
+  animation-play-state: running;
 }
 @keyframes leafAnimation {
   40% {
-    transform: rotate(5deg);
+    transform: rotate(30deg);
   }
   60% {
-    transform: rotate(-3deg);
+    transform: rotate(-10deg);
   }
   80% {
-    transform: rotate(3deg);
+    transform: rotate(5deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes leafLeftAnimation {
+  40% {
+    transform: rotate(-14deg);
+  }
+  60% {
+    transform: rotate(10deg);
+  }
+  80% {
+    transform: rotate(-5deg);
   }
   to {
     opacity: 1;
@@ -3061,9 +3108,6 @@ img {
   transform: rotate(-5deg);
   transform-origin: left center;
 }
-.screen.active .result__image .result-image__leaf-blue-1 {
-  animation-play-state: running;
-}
 .result__image .result-image__leaf-blue-2 {
   width: 39.4%;
   top: 31.4%;
@@ -3071,9 +3115,7 @@ img {
   opacity: 0;
   transform-origin: right center;
   transform: rotate(25deg);
-}
-.screen.active .result__image .result-image__leaf-blue-2 {
-  animation-play-state: running;
+  animation-name: leafLeftAnimation;
 }
 .result__image .result-image__leaf-green {
   width: 47.1%;
@@ -3082,9 +3124,6 @@ img {
   opacity: 0;
   transform-origin: left center;
   transform: rotate(-35deg);
-}
-.screen.active .result__image .result-image__leaf-green {
-  animation-play-state: running;
 }
 .result__image .result-image__flamingo {
   width: 37%;
@@ -3098,9 +3137,6 @@ img {
   animation-delay: 0s, 1s;
   animation-iteration-count: 1, infinite;
   animation-direction: normal, alternate;
-}
-.screen.active .result__image .result-image__flamingo {
-  animation-play-state: running;
 }
 @keyframes flamingoAnimation {
   to {
@@ -3119,13 +3155,10 @@ img {
   top: 2.2%;
   opacity: 0;
   transform: translate(0%, 52%) scale(0);
-  animation-timing-function: cubic-bezier(0.89, 0.23, 0.32, 1.33);
+  animation-timing-function: cubic-bezier(0.68, 0.57, 0.61, 1.54);
   animation-name: suitcaseAnimation;
-  animation-duration: 1s;
+  animation-duration: 1378ms;
   animation-delay: unset;
-}
-.screen.active .result__image .result-image__suitcase {
-  animation-play-state: running;
 }
 @keyframes suitcaseAnimation {
   to {

@@ -10407,7 +10407,7 @@ class TextAnimation {
         lineCount++;
       }
       span.classList.add(`animated-text__char`);
-      span.style.animationDelay = `${Math.random() * this.delay + this.duration * (lineCount - 1) + globalDelay}ms`;
+      span.style.animationDelay = `${2 * Math.random() * this.delay + this.duration * (lineCount - 1) + globalDelay}ms`;
       span.style.animationDuration = `${this.duration}ms`;
       line.appendChild(span.cloneNode(true));
     });
