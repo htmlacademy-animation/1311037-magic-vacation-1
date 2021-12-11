@@ -2,9 +2,41 @@ import Swiper from "swiper";
 
 export default () => {
   let storySlider;
+  const uiClassList = [`body_normal`, `body_light`, `body_blue`];
+  const uiParams = [
+    {
+      idxs: [0, 1],
+      gradient: `linear-gradient(180deg, rgba(83, 65, 118, 0) 0%, #523E75 16.85%)`,
+      image: `url("img/slide1.jpg")`,
+      uiClass: uiClassList[0]
+    }, {
+      idxs: [2, 3],
+      gradient: `linear-gradient(180deg, rgba(45, 54, 179, 0) 0%, #2A34B0 16.85%)`,
+      image: `url("img/slide2.jpg")`,
+      uiClass: uiClassList[1]
+    }, {
+      idxs: [4, 5],
+      gradient: `linear-gradient(180deg, rgba(92, 138, 198, 0) 0%, #5183C4 16.85%)`,
+      image: `url("img/slide3.jpg")`,
+      uiClass: uiClassList[2]
+    }, {
+      idxs: [6, 7],
+      gradient: `linear-gradient(180deg, rgba(45, 39, 63, 0) 0%, #2F2A42 16.85%)`,
+      image: `url("img/slide4.jpg")`,
+      uiClass: uiClassList[0]
+    }
+  ];
+  const slideChangeFunction = (withGradient) => {
+    return () => {
+      const uiObj = uiParams.find((obj) => obj.idxs.includes(storySlider.activeIndex));
+      sliderContainer.style.backgroundImage = withGradient ? [uiObj.image, uiObj.gradient].join(`, `) : uiObj.image;
+      document.body.classList.remove(...uiClassList);
+      document.body.classList.add(uiObj.uiClass);
+    };
+  };
   let sliderContainer = document.getElementById(`story`);
-  sliderContainer.style.backgroundImage = `url("img/slide1.jpg"), linear-gradient(180deg, rgba(83, 65, 118, 0) 0%, #523E75 16.85%)`;
-
+  sliderContainer.style.backgroundImage = [uiParams[0].image, uiParams[1].gradient].join(`, `);
+  document.body.classList.add(uiParams[0].uiClass);
   const setSlider = function () {
     if (((window.innerWidth / window.innerHeight) < 1) || window.innerWidth < 769) {
       storySlider = new Swiper(`.js-slider`, {
@@ -16,17 +48,7 @@ export default () => {
           enabled: true
         },
         on: {
-          slideChange: () => {
-            if (storySlider.activeIndex === 0 || storySlider.activeIndex === 1) {
-              sliderContainer.style.backgroundImage = `url("img/slide1.jpg"), linear-gradient(180deg, rgba(83, 65, 118, 0) 0%, #523E75 16.85%)`;
-            } else if (storySlider.activeIndex === 2 || storySlider.activeIndex === 3) {
-              sliderContainer.style.backgroundImage = `url("img/slide2.jpg"), linear-gradient(180deg, rgba(45, 54, 179, 0) 0%, #2A34B0 16.85%)`;
-            } else if (storySlider.activeIndex === 4 || storySlider.activeIndex === 5) {
-              sliderContainer.style.backgroundImage = `url("img/slide3.jpg"), linear-gradient(180deg, rgba(92, 138, 198, 0) 0%, #5183C4 16.85%)`;
-            } else if (storySlider.activeIndex === 6 || storySlider.activeIndex === 7) {
-              sliderContainer.style.backgroundImage = `url("img/slide4.jpg"), linear-gradient(180deg, rgba(45, 39, 63, 0) 0%, #2F2A42 16.85%)`;
-            }
-          },
+          slideChange: slideChangeFunction(true),
           resize: () => {
             storySlider.update();
           }
@@ -50,17 +72,7 @@ export default () => {
           enabled: true
         },
         on: {
-          slideChange: () => {
-            if (storySlider.activeIndex === 0) {
-              sliderContainer.style.backgroundImage = `url("img/slide1.jpg")`;
-            } else if (storySlider.activeIndex === 2) {
-              sliderContainer.style.backgroundImage = `url("img/slide2.jpg")`;
-            } else if (storySlider.activeIndex === 4) {
-              sliderContainer.style.backgroundImage = `url("img/slide3.jpg")`;
-            } else if (storySlider.activeIndex === 6) {
-              sliderContainer.style.backgroundImage = `url("img/slide4.jpg")`;
-            }
-          },
+          slideChange: slideChangeFunction(),
           resize: () => {
             storySlider.update();
           }
