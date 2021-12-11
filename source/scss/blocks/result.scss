@@ -1,3 +1,4 @@
+@import "mixins/rolling";
 .result {
   flex-grow: 1;
   display: flex;
@@ -115,6 +116,19 @@
   font-size: 2.4rem;
   line-height: 1.2;
   color: $c-light;
+  opacity: 0;
+  animation-name: textShow;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-play-state: paused;
+  .screen.active & {
+    animation-play-state: running;
+  }
+  @keyframes textShow {
+    to {
+      opacity: 1;
+    }
+  }
 
   @media (min-width: $stop-scaling) {
     margin: auto auto 10px;
@@ -147,6 +161,10 @@
     width: 4rem;
     height: 4rem;
     color: $c-dark;
+    .screen.active & {
+      animation-play-state: running;
+    }
+    @include rolling('right');
 
     @media (min-width: $stop-scaling) {
       margin-left: 15px;
