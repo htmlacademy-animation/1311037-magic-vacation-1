@@ -1,17 +1,19 @@
+@import "mixins/footer";
 .disclaimer {
-  color: $c-dark;
   background-color: $c-light;
-
+  @include footerAnimation();
   @media (max-width: $tablet) and (orientation: portrait) {
     font-weight: 400;
     color: $c-light;
     background-color: transparent;
+    @include footerAnimation($c-light);
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     font-weight: 400;
     color: $c-light;
     background-color: transparent;
+    @include footerAnimation($c-light);
   }
 
   ul {

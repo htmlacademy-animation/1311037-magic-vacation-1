@@ -1,0 +1,26 @@
+@mixin footerAnimation($color: $c-dark) {
+  transform: translateY(100%);
+  animation-play-state: paused;
+  animation-duration: 1s;
+  animation-name: footerShowAnimation;
+  animation-fill-mode: forwards;
+  color: $color;
+  .body_loaded & {
+    animation-play-state: running;
+  }
+  .body_has-footer & {
+    color: transparent;
+    transform: none;
+    animation-name: footerColorAnimation;
+  }
+  @keyframes footerShowAnimation {
+    to {
+      transform: none;
+    }
+  }
+  @keyframes footerColorAnimation {
+    to {
+      color: $color;
+    }
+  }
+}

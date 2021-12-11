@@ -13,6 +13,7 @@ export default class FullPageScroll {
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
+    this.containsFooterScreen = [`rules`, `prizes`];
     this.animationNodes = [
       `.intro__title, .intro__label, .intro__date`,
       `.slider__item-title`,
@@ -65,7 +66,10 @@ export default class FullPageScroll {
 
   changeVisibilityDisplay() {
     const currentActiveScreen = Array.from(this.screenElements).find((screen) => screen.classList.contains(`active`));
-
+    if (currentActiveScreen) {
+      document.body.classList.toggle(`body_has-footer`,
+          this.containsFooterScreen.includes(currentActiveScreen.getAttribute(`id`)));
+    }
     const toggleScreen = () => {
       this.screenElements.forEach((screen) => {
         screen.classList.add(`screen--hidden`);
