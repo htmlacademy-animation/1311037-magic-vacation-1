@@ -360,8 +360,6 @@
   left: 0;
   right: 0;
   background-color: $c-dark;
-  opacity: 0;
-  pointer-events: none;
 
   &.screen--show {
     opacity: 1;

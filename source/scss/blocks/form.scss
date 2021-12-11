@@ -50,7 +50,6 @@
   font: inherit;
   font-size: 2.4rem;
   line-height: 1.2;
-  color: $c-dark;
   border: 0;
   border-radius: 3rem;
   outline: none;
@@ -61,10 +60,33 @@
     width $transition-speed $transition-speed ease-in,
     padding 0s $transition-speed * 2 linear;
   transform: scale(0);
-  .screen.active & {
-    width: 100%;
-    transform: none;
-    padding: 0 5.6rem;
+  animation-fill-mode: forwards;
+  animation-name: fieldWidthAnimation;
+  animation-play-state: paused;
+  animation-delay: $transition-speed;
+  animation-duration: $transition-speed * 10;
+
+  @keyframes fieldWidthAnimation {
+    50%{
+      transform: none;
+      width: 6rem;
+    }
+    100% {
+      width: 100%;
+      transform: none;
+      padding: 0 5.6rem;
+    }
+  }
+  &::placeholder {
+    opacity: 0;
+    transition: opacity $transition-speed $transition-speed * 2 linear;
+  }
+  .screen.active &, .screen.screen--show & {
+    animation-play-state: running;
+    &::placeholder {
+      opacity: 1;
+    }
+
     @media (min-width: $stop-scaling){
       padding: 0 56px;
     }
@@ -148,9 +170,31 @@
 }
 
 .form--result {
-  .form__field {
+  .form__button{
+    color: transparent;
+    transform: scale(0);
+    transform-origin: center;
+    animation-name: buttonAnimation;
+    animation-duration: 250ms;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    .screen.active &, .screen.screen--show & {
+      animation-play-state: running;
+    }
+    @keyframes buttonAnimation {
+      85% {
+        color: transparent;
+        transform: none;
+      }
+      100% {
+        transform: none;
+        color: $c-dark;
+      }
+    }
+  }
+  .form__field-wprapper {
     width: calc(100% - 31rem);
-
     @media (min-width: $stop-scaling) {
       width: calc(100% - 310px);
     }
@@ -165,6 +209,12 @@
 
     @media (max-width: $mobile) and (orientation: landscape) {
       width: calc(100% - 5rem);
+    }
+  }
+  .form__field{
+    animation-delay: 1.5s;
+    &::placeholder {
+      animation-delay: calc(1.5s +  #{$transition-speed * 2});
     }
   }
 }
