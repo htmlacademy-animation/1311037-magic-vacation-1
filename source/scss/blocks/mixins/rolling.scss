@@ -1,0 +1,19 @@
+@mixin rolling($direction: 'left') {
+  $dir: 1;
+  @if $direction == 'left' {
+    $dir: -1
+  }
+  opacity: 0;
+  transform: translateX($dir * 157%) rotate($dir * 180deg);
+  animation-name: paginationBtnAnimation;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-play-state: paused;
+  @keyframes paginationBtnAnimation {
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+}

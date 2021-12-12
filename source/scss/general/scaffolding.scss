@@ -99,3 +99,16 @@ img {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+.body {
+  --ui-color: #{$c-dark};
+  --ui-hover: #{$c-purple};
+
+  &_light{
+    --ui-color: #{$c-darkBlue};
+    --ui-hover: #{$c-lightBlue};
+  }
+  &_blue {
+    --ui-color: #{$c-lightBlue};
+    --ui-hover: #{$c-darkBlue};
+  }
+}

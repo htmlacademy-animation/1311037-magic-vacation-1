@@ -1,3 +1,4 @@
+@import "mixins/rolling";
 .slider {
   position: relative;
   flex-grow: 1;
@@ -177,7 +178,17 @@
   width: 4rem;
   height: 4rem;
   color: $c-dark;
+  transform-origin: center;
 
+  .screen.active & {
+    animation-play-state: running;
+  }
+  &--prev{
+    @include rolling('left')
+  }
+  &--next{
+    @include rolling('right')
+  }
   @media (min-width: $stop-scaling) {
     width: 40px;
     height: 40px;
@@ -255,6 +266,21 @@
   font-weight: 400;
   font-size: 2.4rem;
   line-height: 4rem;
+  opacity: 0;
+  animation-name: paginationAnimation;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-duration: 500ms;
+  animation-play-state: paused;
+  .screen.active & {
+    animation-play-state: running;
+  }
+
+  @keyframes paginationAnimation {
+    to {
+      opacity: 1;
+    }
+  }
 
   @media (min-width: $stop-scaling) {
     bottom: 28px;

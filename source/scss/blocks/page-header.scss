@@ -53,7 +53,7 @@
     z-index: 1;
 
     .page-header--menu-opened & {
-      color: $c-dark;
+      color: var(--ui-color);
     }
   }
 
@@ -64,7 +64,7 @@
     z-index: 1;
 
     .page-header--menu-opened & {
-      color: $c-dark;
+      color: var(--ui-color);
     }
   }
 
@@ -100,13 +100,13 @@
     position: absolute;
     right: 0.8rem;
     height: 1px;
-    background-color: $c-dark;
+    background-color: var(--ui-color);
   }
 
   &::before {
     top: 0.9rem;
     width: 1rem;
-    box-shadow: 0 0.6rem 0 0 $c-dark;
+    box-shadow: 0 0.6rem 0 0 var(--ui-color);
   }
 
   &::after {
@@ -156,7 +156,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 4rem 3.5rem;
-    color: $c-dark;
+    color: var(--ui-color);
     background-color: $c-light;
     .body_loaded & {
       transform: translateX(-100%);
@@ -176,7 +176,7 @@
     align-items: flex-start;
     padding: 2rem 3.5rem;
     max-height: calc(var(--vh, 1vh) * 100);
-    color: $c-dark;
+    color: var(--ui-color);
     background-color: $c-light;
     overflow-y: auto;
     .body_loaded & {
@@ -203,13 +203,13 @@
   @media (max-width: $tablet) and (orientation: portrait) {
     margin: auto 0;
     font-size: 2.4rem;
-    color: $c-dark;
+    color: var(--ui-color);
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     margin: auto 0;
     font-size: 1.4rem;
-    color: $c-dark;
+    color: var(--ui-color);
   }
 
   ul {
@@ -275,13 +275,13 @@
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
         right: 0;
-        background-color: $c-dark;
+        background-color: var(--ui-color);
       }
 
       @media (max-width: $mobile) and (orientation: landscape) {
         left: 0;
         right: 0;
-        background-color: $c-dark;
+        background-color: var(--ui-color);
       }
     }
     &.active{
@@ -295,13 +295,13 @@
 
     &:hover,
     &:focus {
-      color: $c-purple;
+      color: var(--ui-hover);
       outline: none;
 
       &::after {
         width: 100%;
         opacity: 1;
-        background-color: $c-purple;
+        background-color: var(--ui-hover);
       }
     }
   }
