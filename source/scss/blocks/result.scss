@@ -121,7 +121,7 @@
   animation-fill-mode: forwards;
   animation-duration: 1s;
   animation-play-state: paused;
-  .screen.active & {
+  .screen.active &, .screen.screen--show & {
     animation-play-state: running;
   }
   @keyframes textShow {
@@ -161,7 +161,7 @@
     width: 4rem;
     height: 4rem;
     color: $c-dark;
-    .screen.active & {
+    .screen.active &, .screen.screen--show &  {
       animation-play-state: running;
     }
     @include rolling('right');
