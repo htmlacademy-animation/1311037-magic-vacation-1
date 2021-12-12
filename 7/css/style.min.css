@@ -2978,7 +2978,7 @@ img {
 .result__button:focus {
   outline: none;
 }
-.screen.active .result__button {
+.screen.active .result__button, .screen.screen--show .result__button {
   animation-play-state: running;
 }
 @keyframes textShow {
@@ -3029,7 +3029,7 @@ img {
   animation-duration: 1s;
   animation-play-state: paused;
 }
-.screen.active .result__button span {
+.screen.active .result__button span, .screen.screen--show .result__button span {
   animation-play-state: running;
 }
 @keyframes paginationBtnAnimation {
